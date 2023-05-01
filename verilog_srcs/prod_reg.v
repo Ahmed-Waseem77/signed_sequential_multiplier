@@ -5,8 +5,7 @@
 //          by - ahmed.UNKNOWN (WES-HPOMEN)
 //          at - 18:10:38 04/30/2023
 //
-// using Mentor Graphics HDL Designer(TM) 2023.1 Built on 19 Jan 2023 at 15:19:29
-//
+
 
 `resetall
 `timescale 1ns/10ps

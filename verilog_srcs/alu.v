@@ -10,7 +10,7 @@
 
 `resetall
 `timescale 1ns/10ps
-module ALU( 
+module alu( 
    output  wire            alu_cout, 
    output  wire    [7:0]   alu_result, 
    input   wire            en, 
