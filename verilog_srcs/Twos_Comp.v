@@ -19,9 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
-module Twos_Comp(input [15:0] num, output [15:0] Comp);
-wire c;
-RCA_16bit r1(.cin(1'd1), .a(~num), .b(16'b0), .sum(comp), .cout(c));
+module Twos_Comp(input [14:0]num, output [14:0]Comp);
+assign Comp = ~num + 1;
 endmodule
 
