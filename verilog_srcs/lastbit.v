@@ -19,7 +19,6 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
-module lastbit(input [15:0] num, output last);
-assign last = num[15];
+module lastbit(input [14:0] num, output last);
+assign last = num[14];
 endmodule
