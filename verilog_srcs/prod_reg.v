@@ -1,27 +1,34 @@
-//
-// Verilog Module signed_sequential_multiplier_lib.prod_reg
-//
-// Created:
-//          by - ahmed.UNKNOWN (WES-HPOMEN)
-//          at - 18:10:38 04/30/2023
-//
-
-
-`resetall
-`timescale 1ns/10ps
-module prod_reg( 
-   input   wire            alu_cout, 
-   input   wire    [7:0]   alu_result, 
-   input   wire            clk, 
-   input   wire    [7:0]   multiplier, 
-   input   wire            prod_load, 
-   input   wire            prod_sign_extention, 
-   output  wire    [16:0]  product, 
-   input   wire            rst, 
-   input   wire            shift_left_mulr, 
-   input   wire            shift_right_mulr
+module prod_reg(
+  input wire clk,
+  input wire rst,
+  input wire load,
+  input wire shift,
+  input wire [6:0] alu_in,
+  input wire [6:0] multiplier,
+  input wire sel,
+  output wire [13:0] prod,
+  output wire [13:0] reg_in
 );
 
+  wire [6:0] multiplier_half;
+  wire [6:0] mult_out;
+  
+  // Instantiate components
+  mux_2x1_7bit mux_sel (
+    .select(sel),
+    .data0(multiplier),
+    .data1(multiplier_half),
+    .out(mult_out)
+  );
+  assign reg_in[13:0] = {alu_in[6:0], multiplier[6:0]};
+  assign multiplier_half[6:0] = reg_in[6:0];
+  shift_register shift_reg (
+    .clk(clk),
+    .reset(rst),
+    .load(load),
+    .shift_enable(shift),
+    .data_in(reg_in),
+    .data_out(prod)
+  );
 
-// Internal Declarations
 endmodule
