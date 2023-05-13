@@ -1,8 +1,8 @@
 module mux_2x1_15bit(
-  input [14:0] data_0,
-  input [14:0] data_1,
+  input [15:0] data_0,
+  input [15:0] data_1,
   input sel,
-  output reg [14:0] out
+  output reg [15:0] out
 );
 
   always @* begin

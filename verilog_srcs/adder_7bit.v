@@ -1,19 +1,19 @@
 `timescale 1ns/1ns
 
 module adder_7bit(
-    input [6:0] A, B,     // 14-bit operands
+    input [7:0] A, B,     // 14-bit operands
     input cin,             // carry in
-    output [6:0] S,       // 14-bit sum
+    output [7:0] S,       // 14-bit sum
     output cout            // carry out
     );
 
-    wire [6:0] C;         // carry signals for each bit
-    wire [6:0] C_out;     // carry out for each full adder
+    wire [7:0] C;         // carry signals for each bit
+    wire [7:0] C_out;     // carry out for each full adder
     
     // Generate the carry signals using generate block
     genvar i;
     generate
-        for (i = 0; i < 7; i = i + 1) begin : carry_gen
+        for (i = 0; i < 8; i = i + 1) begin : carry_gen
             full_adder fa(
                 .a(A[i]),
                 .b(B[i]),
@@ -26,7 +26,7 @@ module adder_7bit(
     
     // Connect the carry signals
     assign C[0] = cin;
-    assign C[6:1] = C_out[5:0];
-    assign cout = C_out[6];
+    assign C[7:1] = C_out[6:0];
+    assign cout = C_out[7];
     
 endmodule

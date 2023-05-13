@@ -5,7 +5,7 @@ module counter_4bit(
     output reg [3:0] count
     );
 
-    always @(posedge clk or posedge reset) begin
+    always @(negedge clk or posedge reset) begin
         if (reset)
             count <= 4'b0000;
         else if (en)

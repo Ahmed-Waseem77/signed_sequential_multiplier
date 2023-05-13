@@ -2,23 +2,24 @@
 
 module shift_register(
     input clk,
-    input [13:0] data_in,
+    input [15:0] data_in,
     input shift_enable,
     input load,
     input reset,
-    output [13:0] data_out
+
+    output [15:0] data_out
     );
 
-    reg [13:0] register;
+    reg [15:0] register;
 
-    always @(posedge clk or posedge reset) begin
+    always @(negedge clk or posedge reset) begin
         if (reset)
             register <= 0;
         else if (load)
             register <= data_in;
             
         else if (shift_enable)
-            register <= {1'b0,register[13:1]};
+            register <= {1'b0,register[15:1]};
     end
 
     assign data_out = register;
