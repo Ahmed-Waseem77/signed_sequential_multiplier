@@ -19,7 +19,6 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module bcd_to_7seg (input en, input [3:0] num, input [0:1] in_anode, output reg [0:6] segments, output reg [0:3] anode_active);
 always @ (*) begin
 
@@ -54,6 +53,7 @@ always @ (*) begin
         8: segments = 7'b0000000;
         9: segments = 7'b0001100;
         10: segments = 7'b1111110;
+        11: segments = 7'b0110000;
 
         default: segments = 7'b1111111;
         endcase
