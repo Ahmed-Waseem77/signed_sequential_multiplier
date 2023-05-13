@@ -47,5 +47,5 @@ module CU (
   counter_4bit counter4(.clk(CLK),.reset(BTNC), .en((CU_SHIFT&(~END_COUNT))|FIRST_CLK),.count(count_4bit));
   counter_1bit counter1(.clk(CLK), .reset(BTNC), .en(MULR_LSB|COUNT_Q), .count(COUNT_Q));
   t_flip_flop t_flip_flopx(.clk(BTNC|zeroFlag|END_COUNT), .t(1'b1), .q(BTNC_Q));
-  mux_2x1_15bit mux_15(.data_0(16'b0000_0000_0000_0000),.data_1({SIGN,PRODUCT_14[14:0]}),.sel(END_COUNT),.out(OUTPUT_SEL));
+  mux_2x1_15bit mux_15(.data_0(16'b0000_0000_0000_0000),.data_1(SIGN?(~PRODUCT_14+1):(PRODUCT_14)),.sel(END_COUNT),.out(OUTPUT_SEL));
 endmodule

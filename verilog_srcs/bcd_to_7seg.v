@@ -19,6 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+
 module bcd_to_7seg (input en, input [3:0] num, input [0:1] in_anode, output reg [0:6] segments, output reg [0:3] anode_active);
 always @ (*) begin
 

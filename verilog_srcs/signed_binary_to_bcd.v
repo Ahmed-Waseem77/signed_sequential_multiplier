@@ -22,7 +22,7 @@
 
 module signed_binary_to_bcd(input [14:0] bin, input N,output reg [19:0] bcd);
 wire [14:0]Comp;
-Twos_Comp T(.num(bin), .Comp(Comp));
+Twos_Comp #(15)T(.num(bin), .Comp(Comp));
 reg [14:0]tempbin;
 
 always @(*)

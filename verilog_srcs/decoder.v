@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 05/11/2023 12:56:31 PM
+// Create Date: 05/11/2023 01:01:17 PM
 // Design Name: 
-// Module Name: clockDivider
+// Module Name: decoder
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,15 +20,6 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module clockDivider #(parameter n = 50000000)(input clk, rst, output reg clk_out);
-wire [31:0] count;
-bin_counter #(32,n) ex (.clk(clk), .reset(rst), .en(1'b1), .count(count));
-// Handle the output clock
-always @ (posedge clk, posedge rst)
-begin
-if (rst) // Asynchronous Reset
-clk_out <= 0;
-else if (count == n-1)
-clk_out <= ~ clk_out;
-end
+module decoder(input [1:0] in, output [3:0] out);
+assign out = 4'b0001 << in;
 endmodule

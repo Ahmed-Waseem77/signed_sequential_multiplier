@@ -19,7 +19,8 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module Twos_Comp(input [14:0]num, output [14:0]Comp);
+
+module Twos_Comp  #(parameter x = 15)(input [x-1:0]num, output [x-1:0]Comp);
 assign Comp = ~num + 1;
 endmodule
 

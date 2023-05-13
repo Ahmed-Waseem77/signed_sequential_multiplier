@@ -1,15 +1,10 @@
 `timescale 1ns/1ns
 
-module main(
-  input clk, BTNC,
-  input [7:0] multiplier, multiplicand,
-  output [15:0] f_product,
-  output LED0
-);
+module main(input clk, BTNC, input [7:0] multiplier, multiplicand, output [15:0] f_product, output LED0);
   wire [7:0] adder_out, mult_out, w_multiplier, w_multiplicand;
   wire sel, load_w, shift_w, sign;
   wire [15:0]product_temp;
-
+  
   two_comp multiplier_comp(.num(multiplier), .invert(multiplier[7]), .Comp(w_multiplier));
   two_comp multiplicand_comp(.num(multiplicand), .invert(multiplicand[7]), .Comp(w_multiplicand));
   mux_2x1_7bit mux_sel (.select(sel), .data1(w_multiplicand), .data0(8'b00000000), .out(mult_out));

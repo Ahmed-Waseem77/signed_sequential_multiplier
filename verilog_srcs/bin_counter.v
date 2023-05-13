@@ -20,7 +20,20 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module bin_counter(
-
-    );
+module bin_counter #(parameter x = 4, n = 10)(input clk, input reset, input en, output reg [x-1:0]count);
+always @(posedge clk, posedge reset)
+begin
+ if (reset == 1)
+ begin
+ count <= 0;
+ end
+ 
+ else if(en == 1)
+ begin
+ if (count == n-1)
+ count <= 0;
+ else
+ count <= count + 1;
+ end
+end
 endmodule

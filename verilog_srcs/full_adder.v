@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 05/10/2023 02:45:08 PM
+// Create Date: 05/13/2023 11:19:06 PM
 // Design Name: 
-// Module Name: lastbit
+// Module Name: full_adder
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,6 +19,8 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module lastbit(input [14:0] num, output last);
-assign last = num[14];
+
+module full_adder(input a, input b, input cin, output sum, output cout);
+assign sum = a ^ b ^ cin;
+assign cout = (a & b) | (cin & (a ^ b));
 endmodule
