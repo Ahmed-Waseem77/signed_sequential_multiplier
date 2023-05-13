@@ -20,9 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module signed_binary_to_bcd(input [14:0] bin, output reg [19:0] bcd);
-wire N;
-lastbit L1(.num(bin), .last(N));
+module signed_binary_to_bcd(input [14:0] bin, input N,output reg [19:0] bcd);
 wire [14:0]Comp;
 Twos_Comp T(.num(bin), .Comp(Comp));
 reg [14:0]tempbin;
