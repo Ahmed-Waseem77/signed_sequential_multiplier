@@ -58,7 +58,7 @@
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="MAIN2"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
-    <a name="simulationFrequency" val="32.0"/>
+    <a name="simulationFrequency" val="1.0"/>
     <comp lib="0" loc="(110,200)" name="Tunnel">
       <a name="facing" val="south"/>
       <a name="label" val="CU_MUL_ZERO_SEL"/>
