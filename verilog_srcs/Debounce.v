@@ -20,8 +20,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Debounce(input clk, rst, in, output out);
+module debouncer(input wire clk, input wire in, output wire out);
 reg q1,q2,q3;
+wire rst = 1'b0;
 always@(posedge clk, posedge rst) begin
  if(rst == 1'b1) begin
  q1 <= 0;

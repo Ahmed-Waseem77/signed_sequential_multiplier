@@ -20,29 +20,16 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module bcd_to_7seg (input en, input [3:0] num, input [0:1] in_anode, output reg [0:6] segments, output reg [0:3] anode_active);
+module bcd_to_7seg (input wire [3:0] num, input wire [0:1] in_anode, output reg [0:6] segments, output reg [0:3] anode_active);
 always @ (*) begin
-
-    if (en==0) begin
-
-        anode_active[0]=1;
-        anode_active[1]=1;
-        anode_active[2]=1;
-        anode_active[3]=1;
-        segments = 7'b1111111;
-
-    end
-    else begin
-
-        case(in_anode)
+    case(in_anode)
         2'b00: anode_active=4'b1110;
         2'b01: anode_active=4'b1101;
         2'b10: anode_active=4'b1011;
         2'b11: anode_active=4'b0111;
-
-        endcase
+    endcase
        
-         case(num)
+    case(num)
         0: segments = 7'b0000001;
         1: segments = 7'b1001111;
         2: segments = 7'b0010010;
@@ -55,9 +42,8 @@ always @ (*) begin
         9: segments = 7'b0001100;
         10: segments = 7'b1111110;
         11: segments = 7'b0110000;
-
+        15: anode_active[3] = 1;
         default: segments = 7'b1111111;
-        endcase
-    end  
-end
+     endcase
+end 
 endmodule

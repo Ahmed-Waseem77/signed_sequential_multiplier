@@ -20,27 +20,28 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module RE_detector(input level, input clk, input rst, output tick);
+module re_detector(input wire level, input wire clk, output wire tick);
 reg [1:0] state;
-reg [1:0] next_state;
-parameter [1:0] A = 2'b00, edg = 2'b01, B = 2'b10;
+reg [1:0] nextState;
+wire rst = 1'b0;
+parameter [1:0] stateA = 2'b00, stateEdg = 2'b01, stateB = 2'b10;
 always @ *
 begin
 case (state)
-    A: if(level==0)
-        next_state = A;
+    stateA: if(level==0)
+        nextState = stateA;
        else 
-        next_state = edg;
+        nextState = stateEdg;
         
-    edg: if(level==0)
-        next_state = A;
+    stateEdg: if(level==0)
+        nextState = stateA;
        else 
-        next_state = B;
-    B: if(level==0)
-        next_state = A;
+        nextState = stateB;
+    stateB: if(level==0)
+        nextState = stateA;
        else 
-        next_state = B;
-     default: next_state = A;    
+        nextState = stateB;
+     default: nextState = stateA;    
 endcase
 
 end
@@ -48,12 +49,12 @@ end
 always @(posedge clk, posedge rst)
 begin
 if (rst)
-    state <= A;
+    state <= stateA;
 else
-    state <= next_state; 
+    state <= nextState; 
 end
 
-assign tick = rst ? 0: (state == edg);
+assign tick = rst ? 0: (state == stateEdg);
 
 
 

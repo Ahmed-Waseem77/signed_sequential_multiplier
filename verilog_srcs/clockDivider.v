@@ -20,9 +20,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module clockDivider #(parameter n = 50000000)(input clk, rst, output reg clk_out);
+module clock_divider #(parameter n = 50000000)(input wire clk, output reg clk_out);
 wire [31:0] count;
-bin_counter #(32,n) ex (.clk(clk), .reset(rst), .en(1'b1), .count(count));
+wire rst = 1'b0;
+bin_counter #(32,n) ex (.clk(clk), .count(count));
 // Handle the output clock
 always @ (posedge clk, posedge rst)
 begin

@@ -20,21 +20,21 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module signed_binary_to_bcd(input [14:0] bin, input N,output reg [19:0] bcd);
+module signed_binary_to_bcd(input wire [14:0] bin, input wire N,output reg [19:0] bcd);
 wire [14:0]Comp;
-Twos_Comp #(15)T(.num(bin), .Comp(Comp));
-reg [14:0]tempbin;
+twos_comp #(15)T(.num(bin), .Comp(Comp));
+reg [14:0]tempBin;
 
 always @(*)
 begin
     case(N)
-    0: tempbin = bin;
-    1: tempbin = Comp;
+    0: tempBin = bin;
+    1: tempBin = Comp;
     endcase
 end      
 integer i;
 	
-always @(tempbin) begin
+always @(tempBin) begin
     bcd=0;		 	
     for (i=0; i<15; i=i+1) begin					
         if (bcd[3:0] >= 5) bcd[3:0] = bcd[3:0] + 3;		
@@ -43,7 +43,7 @@ always @(tempbin) begin
 	if (bcd[15:12] >= 5) bcd[15:12] = bcd[15:12] + 3;
 	if (bcd[19:16] >= 5) bcd[19:16] = bcd[19:16] + 3;
 
-	bcd = {bcd[19:0],tempbin[14-i]};				
+	bcd = {bcd[19:0],tempBin[14-i]};				
     end
 end
 endmodule
