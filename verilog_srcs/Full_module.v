@@ -29,11 +29,6 @@ module Full_module(
 wire [15:0] fProduct;
 wire rst = 0;
 wire start;
-reg  savedSignState = 0;
-
-always @( start ) begin
-    savedSignState <= fProduct[15];
-end
 
 pb_detector S(
     .PB_signal(PB_start),
@@ -55,7 +50,6 @@ display M2(
     .product(fProduct[14:0]),
     .N(fProduct[15]),
     .PB_signal(PB_scroll),
-    .out(out),
-    .rst(BTNC)
+    .out(out)
 );
 endmodule

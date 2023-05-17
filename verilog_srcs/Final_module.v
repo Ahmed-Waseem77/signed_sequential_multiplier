@@ -20,11 +20,13 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module display(input wire [14:0]product, input wire rst ,input wire N, input wire clk, input wire [3:0]signbits ,input wire [1:0] PB_signal, output wire [10:0]out);
+module display(input wire [14:0]product, input wire rst ,input wire N, input wire clk ,input wire [1:0] PB_signal, output wire [10:0]out);
 wire newClock;
 wire [1:0] debounceSig;
 wire [19:0] bcd;
 wire [1:0]muxsel1;
+wire sign;
+
 signed_binary_to_bcd b1 (.bin(product), .N(N), .bcd(bcd));
 clock_divider #(50000) c1(.clk(clk), .clk_out(newClock));
 pb_detector A1(.PB_signal(PB_signal[0]), .clk(clk), .new_signal(debounceSig[0]));
