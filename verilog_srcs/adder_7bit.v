@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 
-module adder_7bit(
+module adder_8bit(
     input [7:0] A, B,     // 14-bit operands
     input cin,             // carry in
     output [7:0] S,       // 14-bit sum

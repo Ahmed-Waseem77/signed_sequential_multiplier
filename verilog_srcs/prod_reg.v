@@ -15,17 +15,23 @@ module prod_reg(
   wire [7:0] mult_out;
   
   // Instantiate components
-  mux_2x1_7bit mux_sel (
-    .select(sel),
-    .data0(multiplier),
-    .data1(multiplier_half),
-    .out(mult_out)
+  mux_2x1_8bit mux_sel (
+        .select(sel),
+        .data0(multiplier),
+        .data1(multiplier_half),
+        .out(mult_out)
   );
   assign reg_in[15:0] = {alu_in[7:0], mult_out[7:0]};
   assign multiplier_half[7:0] = prod[7:0];
-  shift_register shift_reg (.clk(clk), .reset(rst), .load(load), .shift_enable(shift),
-    .data_in(reg_in),
-    .data_out(prod)
+  
+  shift_register shift_reg 
+  (
+        .clk(clk), 
+        .reset(rst), 
+        .load(load), 
+        .shift_enable(shift),
+        .data_in(reg_in),
+        .data_out(prod)
   );
 
 endmodule

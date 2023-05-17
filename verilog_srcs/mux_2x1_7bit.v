@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 
-module mux_2x1_7bit(
+module mux_2x1_8bit(
     input  [7:0] data0,
     input  [7:0] data1,
     input select,
