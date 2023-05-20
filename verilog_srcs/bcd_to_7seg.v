@@ -20,7 +20,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module bcd_to_7seg (input wire [3:0] num, input wire [0:1] in_anode, output reg [0:6] segments, output reg [0:3] anode_active);
+module bcd_to_7seg 
+(
+    input wire [3:0] num, 
+    input wire [0:1] in_anode, 
+    output reg [0:6] segments, 
+    output reg [0:3] anode_active
+);
+
 always @ (*) begin
     case(in_anode)
         2'b00: anode_active=4'b1110;

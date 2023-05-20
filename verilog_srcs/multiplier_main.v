@@ -4,10 +4,11 @@ module multiplier_main
 (
 input wire           clk,
 input wire           BTNC,
-input wire [7:0]     multiplier,
-input wire [7:0]     multiplicand,
-output     [15:0]    f_product,
-output               LED0
+input wire  [7:0]    multiplier,
+input wire  [7:0]    multiplicand,
+output wire [15:0]   f_product,
+output wire          dispSign,
+output wire          LED0
 );
   wire [7:0] adderOut, mult_out, w_multiplier, w_multiplicand;
   wire sel, load_w, shift_w, sign;
@@ -21,7 +22,8 @@ output               LED0
         .invert(multiplier[7]),
         .Comp(w_multiplier)
   );
-  two_comp multiplicand_comp(
+  two_comp multiplicand_comp
+  (
         .num(multiplicand),
         .invert(multiplicand[7]),
         .Comp(w_multiplicand)
@@ -49,7 +51,6 @@ prod_reg product_reg
         .alu_in(adderOut),
         .multiplier(w_multiplier), 
         .sel(sel), 
-        .sign(sign), 
         .prod(product_temp)
 );
 CU control_unit 
@@ -65,7 +66,7 @@ CU control_unit
         .multiplicandSign(multiplicand[7]), 
         .mutiplierMutiplicandSelect(sel), 
         .LED0(LED0), 
-        .sign(sign), 
+        .savedSign(dispSign), 
         .outputProduct(f_product)
   );
 endmodule

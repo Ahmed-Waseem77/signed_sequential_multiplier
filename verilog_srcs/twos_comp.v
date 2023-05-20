@@ -20,7 +20,12 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module twos_comp  #(parameter x = 15)(input wire [x-1:0]num, output wire [x-1:0]Comp);
+module twos_comp  #(parameter x = 15)
+(
+    input wire [x-1:0]num, 
+    output wire [x-1:0]Comp
+);
+
 assign Comp = ~num + 1;
 endmodule
 

@@ -1,6 +1,7 @@
-module t_flip_flop(
-  input clk,
-  input t,
+module t_flip_flop
+(
+  input wire clk,
+  input wire t,
   output reg q
 );
 initial begin

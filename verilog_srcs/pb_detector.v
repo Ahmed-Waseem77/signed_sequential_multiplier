@@ -20,7 +20,13 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module pb_detector(input wire PB_signal, input wire clk, output wire new_signal);
+module pb_detector
+(
+    input wire PB_signal, 
+    input wire clk, 
+    output wire new_signal
+);
+
 wire newClock, debounceSig;
 clock_divider #(50000) c1(.clk(clk), .clk_out(newClock));
 debouncer D1(.clk(newClock), .in(PB_signal), .out(debounceSig));

@@ -20,7 +20,13 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module signed_binary_to_bcd(input wire [14:0] bin, input wire N,output reg [19:0] bcd);
+module signed_binary_to_bcd
+(
+    input wire [14:0] bin,
+    input wire N,
+    output reg [19:0] bcd
+);
+
 wire [14:0]Comp;
 twos_comp #(15)T(.num(bin), .Comp(Comp));
 reg [14:0]tempBin;

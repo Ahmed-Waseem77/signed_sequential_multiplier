@@ -20,22 +20,17 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module bin_counter #(parameter x = 4, n = 10)(input wire clk,  output reg [x-1:0]count);
-wire reset = 1'b0;
-wire en = 1'b1;
-always @(posedge clk, posedge reset)
+module bin_counter #(parameter x = 4, n = 10)
+(
+    input wire clk, 
+    output reg [x-1:0]count
+);
+
+always @(posedge clk)
 begin
- if (reset == 1)
- begin
- count <= 0;
- end
- 
- else if(en == 1)
- begin
- if (count == n-1)
- count <= 0;
- else
- count <= count + 1;
- end
+     if (count == n-1)
+     count <= 0;
+     else
+     count <= count + 1;
 end
 endmodule

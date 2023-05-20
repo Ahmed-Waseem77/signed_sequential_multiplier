@@ -20,7 +20,17 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module display(input wire [14:0]product, input wire rst ,input wire N, input wire clk ,input wire [1:0] PB_signal, output wire [10:0]out);
+module display
+(
+    input wire [14:0]product, 
+    input wire rst, 
+    input wire N, 
+    input wire clk,
+    input wire [1:0] pbSignal, 
+    input wire rst, 
+    output wire [10:0]out
+);
+
 wire newClock;
 wire [1:0] debounceSig;
 wire [19:0] bcd;
@@ -29,8 +39,8 @@ wire sign;
 
 signed_binary_to_bcd b1 (.bin(product), .N(N), .bcd(bcd));
 clock_divider #(50000) c1(.clk(clk), .clk_out(newClock));
-pb_detector A1(.PB_signal(PB_signal[0]), .clk(clk), .new_signal(debounceSig[0]));
-pb_detector B1(.PB_signal(PB_signal[1]), .clk(clk), .new_signal(debounceSig[1]));
+pb_detector A1(.PB_signal(pbSignal[0]), .clk(clk), .new_signal(debounceSig[0]));
+pb_detector B1(.PB_signal(pbSignal[1]), .clk(clk), .new_signal(debounceSig[1]));
 
 
 
@@ -64,7 +74,7 @@ always @ * begin
     
     
 end
-always @(posedge newClock, posedge rst)
+always @(posedge newClock)
 begin
     if (rst)
         state <= stateA;

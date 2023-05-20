@@ -1,12 +1,11 @@
 module prod_reg(
   input wire clk,
-  input wire rst,
   input wire load,
   input wire shift,
+  input wire rst,
   input wire [7:0] alu_in,
   input wire [7:0] multiplier,
   input wire sel,
-  input wire sign,
   output wire [15:0] prod,
   output wire [15:0] reg_in
 );
@@ -15,7 +14,8 @@ module prod_reg(
   wire [7:0] mult_out;
   
   // Instantiate components
-  mux_2x1_8bit mux_sel (
+  mux_2x1_8bit mux_sel 
+  (
         .select(sel),
         .data0(multiplier),
         .data1(multiplier_half),
@@ -27,7 +27,6 @@ module prod_reg(
   shift_register shift_reg 
   (
         .clk(clk), 
-        .reset(rst), 
         .load(load), 
         .shift_enable(shift),
         .data_in(reg_in),
