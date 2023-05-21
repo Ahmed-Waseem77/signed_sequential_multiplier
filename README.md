@@ -6,8 +6,8 @@
 
 
 
-# <p align=center> Signed Sequential Multiplier </p>
-### <p align=center> Youssef Elmahdy, Hussein Heggi, Ahmed Waseem, Ahmed Barbary
+# <p align=center> Signed Optimized Sequential Multiplier </p>
+### <p align=center> Youssef Elmahdy, Hussein Heggi, Ahmed Waseem, Ahmed Elberbary
 ### <p align=center> Instructor: Mohamed Shalaan
 ### <p align=center> The American Univesity in Cairo 
 
@@ -34,7 +34,7 @@ The Sequential Optimized Multiplier  (SOM) primarily utilizes a divide-and-conqu
  ## Block Structure 
   <font size = "12">
    
-   ![image](https://github.com/Ahmed-Waseem77/signed_sequential_multiplier/assets/98818805/3afbbd28-e068-4ae4-8fa3-d28803a01e61)
+   ![image](https://github.com/Ahmed-Waseem77/signed_sequential_multiplier/assets/98818805/c507c35e-1e29-4c54-ac70-8f3b20b5cd12)
    
    
    ![image](https://github.com/Ahmed-Waseem77/signed_sequential_multiplier/assets/98818805/386bbb3f-fd97-45c7-bae6-cc326326f9b7)
