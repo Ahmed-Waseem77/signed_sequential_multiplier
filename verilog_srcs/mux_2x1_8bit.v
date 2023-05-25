@@ -1,11 +1,10 @@
 `timescale 1ns/1ns
 
-module mux_2x1_8bit
-(
-    input  wire [7:0] data0,
-    input  wire [7:0] data1,
-    input  wire select,
-    output reg  [7:0] out
+module mux_2x1_8bit(
+    input  [7:0] data0,
+    input  [7:0] data1,
+    input select,
+    output reg [7:0] out
     );
 
     always @ (data0, data1, select) begin

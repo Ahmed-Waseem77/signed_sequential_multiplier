@@ -20,19 +20,16 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module clock_divider #(parameter n = 50000000)
-(
-    input wire clk,
-    output reg clk_out
- );
- 
+module clock_divider #(parameter n = 50000000)(input wire clk, output reg clk_out);
 wire [31:0] count;
+wire rst = 1'b0;
 bin_counter #(32,n) ex (.clk(clk), .count(count));
-
-always @ (posedge clk)
+// Handle the output clock
+always @ (posedge clk, posedge rst)
 begin
-    if (count == n-1)
-        clk_out <= ~ clk_out;
+if (rst) // Asynchronous Reset
+clk_out <= 0;
+else if (count == n-1)
+clk_out <= ~ clk_out;
 end
-
 endmodule

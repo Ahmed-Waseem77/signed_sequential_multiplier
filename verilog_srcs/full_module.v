@@ -14,49 +14,46 @@
 //You should have received a copy of the GNU General Public License
 //along with this program; If not, see <http://www.gnu.org/licenses/>.
 // 
+
 `timescale 1ns / 1ps
-
-module Full_module
-(
-    input  wire  [7:0]mult, 
-    input  wire  [7:0]mcand, 
-    input  wire  clk, 
-    input  wire  pbStart, 
-    input  wire  [1:0]pbScroll, 
-    output wire  [10:0]out, 
-    output wire  LED
+module Full_module(
+    input wire [7:0]mult, 
+    input wire [7:0]mcand, 
+    input wire clk, 
+    input wire PB_start, 
+    input wire [1:0]PB_scroll, 
+    output [10:0]out, 
+    output LED
 );
-
+reg [7:0]multiplier, mcandlicand;
+always @(posedge start) begin
+     multiplier = mult;
+    mcandlicand = mcand;
+end
 wire [15:0] fProduct;
-wire dispSign;
 wire rst = 0;
 wire start;
 
-pb_detector S
-(
-    .PB_signal(pbStart),
+pb_detector S(
+    .PB_signal(PB_start),
     .clk(clk),
     .new_signal(start)
 );
 
-multiplier_main M1
-(
+multiplier_main M1(
     .clk(clk),
     .BTNC(start),
-    .multiplier(mult),
-    .multiplicand(mcand),
+    .multiplier(multiplier),
+    .multiplicand(mcandlicand),
     .f_product(fProduct),
-    .dispSign(dispSign),
     .LED0(LED)
 );
 
-display M2
-(
+display M2(
     .clk(clk),
     .product(fProduct[14:0]),
-    .N(dispSign),
-    .pbSignal(pbScroll),
-    .rst(BTNC),
+    .N(fProduct[15]),
+    .PB_signal(PB_scroll),
     .out(out)
 );
 endmodule

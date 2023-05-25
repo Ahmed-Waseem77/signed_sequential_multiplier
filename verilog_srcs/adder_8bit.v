@@ -1,11 +1,10 @@
 `timescale 1ns/1ns
 
-module adder_8bit
-(
-    input  wire [7:0] A, B,     // 14-bit operands
-    input  wire cin,             // carry in
-    output wire [7:0] S,       // 14-bit sum
-    output wire cout            // carry out
+module adder_8bit(
+    input [7:0] A, B,     // 14-bit operands
+    input cin,             // carry in
+    output [7:0] S,       // 14-bit sum
+    output cout            // carry out
     );
 
     wire [7:0] C;         // carry signals for each bit

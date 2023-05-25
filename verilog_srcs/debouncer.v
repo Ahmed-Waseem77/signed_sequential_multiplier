@@ -20,20 +20,20 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module debouncer
-(
-    input wire clk, 
-    input wire in, 
-    output wire out
-);
-
+module debouncer(input wire clk, input wire in, output wire out);
 reg q1,q2,q3;
-
-always@(posedge clk) 
-begin
-     q1 <= in;
-     q2 <= q1;
-     q3 <= q2; 
+wire rst = 1'b0;
+always@(posedge clk, posedge rst) begin
+ if(rst == 1'b1) begin
+ q1 <= 0;
+ q2 <= 0;
+ q3 <= 0;
+ end
+ else begin
+ q1 <= in;
+ q2 <= q1;
+ q3 <= q2;
+ end
 end
-assign out = q1&q2&q3;
+assign out = (rst) ? 0 : q1&q2&q3;
 endmodule

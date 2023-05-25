@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 05/11/2023 12:55:34 PM
+// Create Date: 05/11/2023 01:01:17 PM
 // Design Name: 
-// Module Name: bin_counter
+// Module Name: decoder
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,22 +20,6 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module bin_counter #(parameter x = 4, n = 10)(input wire clk,  output reg [x-1:0]count);
-wire reset = 1'b0;
-wire en = 1'b1;
-always @(posedge clk, posedge reset)
-begin
- if (reset == 1)
- begin
- count <= 0;
- end
- 
- else if(en == 1)
- begin
- if (count == n-1)
- count <= 0;
- else
- count <= count + 1;
- end
-end
+module decoder(input [1:0] in, output [3:0] out);
+assign out = 4'b0001 << in;
 endmodule
