@@ -25,17 +25,18 @@ output wire  [3:0]count_4bit
   wire [3:0]count_4bit;
   wire BTNC_Q;
   wire LO_SH_OR_GATE;
-  
+  reg f_click;
+
   assign orResult = |multiplier;
   assign zeroFlag = ~orResult;
   assign FIRST_CLK = (~|count_4bit);
   assign endCount = count_4bit[0]&count_4bit[3];//needs review
-  assign LED0 = ~BTNC_Q;
   assign load = (FIRST_CLK|COUNT_Q)&BTNC_Q;
   assign shift = (~(FIRST_CLK|COUNT_Q))&BTNC_Q;
   assign mutiplierMutiplicandSelect = ~FIRST_CLK;
   assign sign = multiplierSign^multiplicandSign;
-  
+  assign LED0 = endCount ? 1'b1:1'b0;
+
 
   counter_4bit counter4(.clk(clk),.reset(BTNC), .en((shift&(~endCount))|FIRST_CLK),.count(count_4bit));
   counter_1bit counter1(.clk(clk), .reset(BTNC), .en(multiplierLSB|COUNT_Q), .count(COUNT_Q));
