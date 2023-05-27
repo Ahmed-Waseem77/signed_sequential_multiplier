@@ -151,7 +151,25 @@ By Creating testbenches to simulate the behavior of the design and verify its co
   -Used FPGA for confirmation:
   We Implemented the design on the basys 3, following the synthesis and place-and-route steps. Verify that the design operates correctly on the FPGA, using various test-cases including edge cases.
   
- </font>   
+ </font>
+	
+	
+## Implementation Instructions
+ <font size = "12">
+	 
+	 
+1- Create a project file on ViVado
+	 
+2- Pull the Repository to your local machine
+	 
+3- Add directory to Vivado source files
+	 
+4- Add the constraint files
+	 
+5- Synthesize, Implement, generate Bit-stream, and program your basys 3 board.
+	 
+ </font>
+
  
 ## Conclusion
  <font size = "12">
